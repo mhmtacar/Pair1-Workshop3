@@ -35,14 +35,21 @@ public class ProductsController {
         Product _product = productService.add(product);
 
         if (_product != null) {
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+            return ResponseEntity.status(HttpStatus.CREATED).body(_product);
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable int id){
-        productService.delete(id);
+    public ResponseEntity<Product> delete(@PathVariable int id){
+        Product product = productService.getById(id);
+
+        if (product != null) {
+            productService.delete(id);
+            return ResponseEntity.ok(product);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
     @PutMapping
     public ResponseEntity<Product> update(@RequestBody Product product){

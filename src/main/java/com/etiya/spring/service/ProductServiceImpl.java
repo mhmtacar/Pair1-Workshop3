@@ -24,13 +24,14 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product add(Product product) {
-        return productRepository.add(product);
+        if(getById(product.getId()) == null){
+            return productRepository.add(product);
+        }
+        return null;
     }
 
     @Override
-    public void delete(int id) {
-        productRepository.delete(id);
-    }
+    public void delete(int id) { productRepository.delete(id); }
 
     @Override
     public Product update(Product product) {
