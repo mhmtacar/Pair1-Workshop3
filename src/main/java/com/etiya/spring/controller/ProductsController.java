@@ -1,5 +1,8 @@
 package com.etiya.spring.controller;
 
+import com.etiya.spring.dto.product.CreateProductRequestDto;
+import com.etiya.spring.dto.product.CreateProductResponseDto;
+import com.etiya.spring.dto.product.ListProductDto;
 import com.etiya.spring.entity.Product;
 import com.etiya.spring.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +20,7 @@ public class ProductsController {
     private final ProductService productService;
 
     @GetMapping
-    public List<Product> getAll(){
+    public List<ListProductDto> getAll(){
         return productService.getAll();
     }
     @GetMapping("/{id}")
@@ -31,8 +34,8 @@ public class ProductsController {
         }
     }
     @PostMapping
-    public ResponseEntity<Product> add(@RequestBody Product product){
-        Product _product = productService.add(product);
+    public ResponseEntity<Product> add(@RequestBody CreateProductRequestDto createProductRequestDto){
+        Product _product = productService.add(createProductRequestDto);
 
         if (_product != null) {
             return ResponseEntity.status(HttpStatus.CREATED).body(_product);
