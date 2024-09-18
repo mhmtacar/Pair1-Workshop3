@@ -3,7 +3,6 @@ package com.etiya.spring.mapper;
 import com.etiya.spring.dto.product.*;
 import com.etiya.spring.entity.Product;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -15,8 +14,9 @@ public interface ProductMapper
 
     Product productFromCreateDto(CreateProductRequestDto dto);
     CreateProductResponseDto createProductResponseDtoFromProduct(Product product);
-    List<ListProductDto> productFromListDto(List<Product> dto);
-    Product productFromUpdateDto(UpdateProductDto dto);
+    List<ListProductResponseDto> productFromListDto(List<Product> dto);
+    Product productFromUpdateDto(UpdateProductRequestDto dto);
+    UpdateProductResponseDto updateProductResponseDtoFromProduct(Product product);
 
 }
 // Global Exception Handling

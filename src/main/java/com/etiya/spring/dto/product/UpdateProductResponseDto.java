@@ -9,9 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ListProductDto
-{
+public class UpdateProductResponseDto {
     private int id;
     private String name;
-    private double unitPrice;
+    private int unitsInStock;
 }
