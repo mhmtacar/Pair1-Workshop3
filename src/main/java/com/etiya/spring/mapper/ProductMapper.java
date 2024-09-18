@@ -17,7 +17,7 @@ public interface ProductMapper
     List<ListProductResponseDto> productFromListDto(List<Product> dto);
     Product productFromUpdateDto(UpdateProductRequestDto dto);
     UpdateProductResponseDto updateProductResponseDtoFromProduct(Product product);
-
+    GetByIdProductResponseDto productFromGetByIdDto(Product product);
 }
 // Global Exception Handling
 // Spring Validation ile Validasyon

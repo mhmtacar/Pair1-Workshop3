@@ -9,5 +9,5 @@ public interface ProductRepository {
     Product getById(int id);
     Product add(Product product);
     void delete(int id);
-    Product update(Product product);
+    Product update(int id, Product product);
 }

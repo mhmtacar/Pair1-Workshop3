@@ -37,9 +37,9 @@ public class InMemoryProductRepository implements ProductRepository{
     }
 
     @Override
-    public Product update(Product product) {
+    public Product update(int id, Product product) {
         for(Product _product: products){
-            if(_product.getId() == product.getId()) {
+            if(_product.getId() == id) {
                 _product.setName(product.getName());
                 _product.setUnitPrice(product.getUnitPrice());
                 _product.setUnitsInStock(product.getUnitsInStock());

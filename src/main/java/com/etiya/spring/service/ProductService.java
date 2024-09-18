@@ -10,8 +10,8 @@ import java.util.List;
 public interface ProductService {
 
     List<ListProductResponseDto> getAll();
-    Product getById(int id);
+    GetByIdProductResponseDto getById(int id);
     CreateProductResponseDto add(CreateProductRequestDto createProductRequestDto);
     void delete(int id);
-    UpdateProductResponseDto update(UpdateProductRequestDto updateProductRequestDto);
+    UpdateProductResponseDto update(int id, UpdateProductRequestDto updateProductRequestDto);
 }

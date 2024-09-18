@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
@@ -21,13 +22,18 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product getById(int id) {
-        return productRepository.getById(id);
+    public GetByIdProductResponseDto getById(int id) {
+        Product product = productRepository.getById(id);
+        return ProductMapper.INSTANCE.productFromGetByIdDto(product);
     }
 
     @Override
     public CreateProductResponseDto add(CreateProductRequestDto createProductRequestDto) {
         Product product = ProductMapper.INSTANCE.productFromCreateDto(createProductRequestDto);
+
+        Random random = new Random();
+        product.setId(random.nextInt(1, 99999));
+
         Product addedProduct = productRepository.add(product);
 
         return ProductMapper.INSTANCE.createProductResponseDtoFromProduct(addedProduct);
@@ -37,9 +43,10 @@ public class ProductServiceImpl implements ProductService{
     public void delete(int id) { productRepository.delete(id); }
 
     @Override
-    public UpdateProductResponseDto update(UpdateProductRequestDto updateProductRequestDto) {
+    public UpdateProductResponseDto update(int id, UpdateProductRequestDto updateProductRequestDto) {
+
         Product product = ProductMapper.INSTANCE.productFromUpdateDto(updateProductRequestDto);
-        Product updatedProduct = productRepository.update(product);
+        Product updatedProduct = productRepository.update(id, product);
         return ProductMapper.INSTANCE.updateProductResponseDtoFromProduct(updatedProduct);
     }
 }
