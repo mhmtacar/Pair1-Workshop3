@@ -34,11 +34,11 @@ public class ProductsController {
         }
     }
     @PostMapping
-    public ResponseEntity<Product> add(@RequestBody CreateProductRequestDto createProductRequestDto){
-        Product _product = productService.add(createProductRequestDto);
+    public ResponseEntity<CreateProductResponseDto> add(@RequestBody CreateProductRequestDto createProductRequestDto){
+        CreateProductResponseDto createProductResponseDto = productService.add(createProductRequestDto);
 
-        if (_product != null) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(_product);
+        if (createProductResponseDto != null) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(createProductResponseDto);
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }

@@ -13,7 +13,7 @@ public interface ProductService {
 
     List<ListProductDto> getAll();
     Product getById(int id);
-    Product add(CreateProductRequestDto product);
+    CreateProductResponseDto add(CreateProductRequestDto createProductRequestDto);
     void delete(int id);
     Product update(Product product);
 }

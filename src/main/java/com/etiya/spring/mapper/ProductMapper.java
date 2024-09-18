@@ -12,10 +12,7 @@ import java.util.List;
 public interface ProductMapper
 {
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
-    // Target methodIsmi(Source s);
-    // Target -> Mapping işleminde elde etmeyi hedeflediğim class
-    // Source -> Target'a ulaşmak için kullandığım kaynak.
-    // Eğer isimler aynı ise ekstra konfigürasyon gerekmez
+
     Product productFromCreateDto(CreateProductRequestDto dto);
     CreateProductResponseDto createProductResponseDtoFromProduct(Product product);
     List<ListProductDto> productFromListDto(List<Product> dto);

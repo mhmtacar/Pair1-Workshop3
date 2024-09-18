@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
@@ -29,10 +28,11 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product add(CreateProductRequestDto createProductRequestDto) {
+    public CreateProductResponseDto add(CreateProductRequestDto createProductRequestDto) {
         Product product = ProductMapper.INSTANCE.productFromCreateDto(createProductRequestDto);
-        return productRepository.add(product);
-        //return ProductMapper.INSTANCE.createProductResponseDtoFromProduct(productRepository.add(product));
+        Product addedProduct = productRepository.add(product);
+
+        return ProductMapper.INSTANCE.createProductResponseDtoFromProduct(addedProduct);
     }
 
     @Override
