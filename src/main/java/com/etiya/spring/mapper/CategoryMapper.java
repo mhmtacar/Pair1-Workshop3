@@ -4,10 +4,12 @@ import com.etiya.spring.dto.category.*;
 
 import com.etiya.spring.entity.Category;
 
+import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
+@Mapper
 public interface CategoryMapper {
     CategoryMapper INSTANCE = Mappers.getMapper(CategoryMapper.class);
 

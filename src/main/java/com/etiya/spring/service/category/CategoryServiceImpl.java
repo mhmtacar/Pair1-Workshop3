@@ -30,10 +30,19 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CreateCategoryResponseDto add(CreateCategoryRequestDto createCategoryRequestDto) {
+
+        boolean categoryWithSameName = categoryRepository.getAll()
+                .stream()
+                .anyMatch(category -> category.getName().equals(createCategoryRequestDto.getName()));
+
+        if(categoryWithSameName)
+            throw new BusinessException("Böyle bir kategori zaten var.");
+
         Category category = CategoryMapper.INSTANCE.categoryFromCreateDto(createCategoryRequestDto);
 
         Random random = new Random();
         category.setId(random.nextInt(1, 9));
+
 
         Category addedCategory = categoryRepository.add(category);
 
@@ -47,8 +56,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public UpdateCategoryResponseDto update(int id, UpdateCategoryRequestDto updateCategoryRequestDto) {
-        Category category = CategoryMapper.INSTANCE.categoryFromUpdateDto(updateCategoryRequestDto);
-
         boolean categoryWithSameName = categoryRepository.getAll()
                 .stream()
                 .anyMatch(_category -> _category.getName().equals(updateCategoryRequestDto.getName()));
@@ -56,6 +63,7 @@ public class CategoryServiceImpl implements CategoryService {
         if(categoryWithSameName)
             throw new BusinessException("Böyle bir kategori zaten var.");
 
+        Category category = CategoryMapper.INSTANCE.categoryFromUpdateDto(updateCategoryRequestDto);
 
         Category updatedCategory = categoryRepository.update(id, category);
         return CategoryMapper.INSTANCE.updateCategoryResponseDtoFromCategory(updatedCategory);

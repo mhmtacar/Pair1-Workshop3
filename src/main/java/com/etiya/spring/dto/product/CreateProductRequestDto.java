@@ -22,4 +22,6 @@ public class CreateProductRequestDto
     private double unitPrice;
     @PositiveOrZero
     private int unitsInStock;
+    @Positive
+    private int categoryId;
 }
