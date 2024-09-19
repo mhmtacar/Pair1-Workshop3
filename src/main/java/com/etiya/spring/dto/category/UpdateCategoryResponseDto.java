@@ -1,4 +1,4 @@
-package com.etiya.spring.dto.product;
+package com.etiya.spring.dto.category;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateProductResponseDto {
+public class UpdateCategoryResponseDto {
     private int id;
     private String name;
-    private int unitsInStock;
 }

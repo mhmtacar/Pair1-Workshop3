@@ -1,5 +1,6 @@
-package com.etiya.spring.dto.product;
+package com.etiya.spring.dto.category;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,8 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateProductResponseDto {
-    private int id;
+public class UpdateCategoryRequestDto {
+    @NotEmpty
     private String name;
-    private int unitsInStock;
 }

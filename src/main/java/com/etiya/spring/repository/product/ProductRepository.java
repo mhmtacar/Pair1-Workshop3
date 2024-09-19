@@ -1,4 +1,4 @@
-package com.etiya.spring.repository;
+package com.etiya.spring.repository.product;
 
 import com.etiya.spring.entity.Product;
 

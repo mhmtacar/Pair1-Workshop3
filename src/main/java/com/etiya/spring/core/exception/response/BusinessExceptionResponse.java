@@ -1,4 +1,4 @@
-package com.etiya.spring.dto.product;
+package com.etiya.spring.core.exception.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateProductResponseDto {
-    private int id;
-    private String name;
-    private int unitsInStock;
+public class BusinessExceptionResponse {
+    private String message;
 }

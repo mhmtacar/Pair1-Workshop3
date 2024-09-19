@@ -1,8 +1,8 @@
 package com.etiya.spring.controller;
 
 import com.etiya.spring.dto.product.*;
-import com.etiya.spring.entity.Product;
-import com.etiya.spring.service.ProductService;
+import com.etiya.spring.service.product.ProductService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +32,7 @@ public class ProductsController {
         }
     }
     @PostMapping
-    public ResponseEntity<CreateProductResponseDto> add(@RequestBody CreateProductRequestDto createProductRequestDto){
+    public ResponseEntity<CreateProductResponseDto> add(@RequestBody @Valid CreateProductRequestDto createProductRequestDto){
         CreateProductResponseDto createProductResponseDto = productService.add(createProductRequestDto);
 
         if (createProductResponseDto != null) {
@@ -53,7 +53,7 @@ public class ProductsController {
         }
     }
     @PutMapping("/{id}")
-    public ResponseEntity<UpdateProductResponseDto> update(@PathVariable int id, @RequestBody UpdateProductRequestDto updateProductRequestDto){
+    public ResponseEntity<UpdateProductResponseDto> update(@PathVariable int id, @RequestBody @Valid UpdateProductRequestDto updateProductRequestDto){
         UpdateProductResponseDto _product = productService.update(id, updateProductRequestDto);
 
         if (_product != null) {

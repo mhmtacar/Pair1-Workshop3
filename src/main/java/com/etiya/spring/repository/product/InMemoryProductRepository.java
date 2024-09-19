@@ -1,4 +1,4 @@
-package com.etiya.spring.repository;
+package com.etiya.spring.repository.product;
 
 import com.etiya.spring.entity.Product;
 import org.springframework.stereotype.Repository;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class InMemoryProductRepository implements ProductRepository{
+public class InMemoryProductRepository implements ProductRepository {
 
     List<Product> products = new ArrayList<>();
     @Override

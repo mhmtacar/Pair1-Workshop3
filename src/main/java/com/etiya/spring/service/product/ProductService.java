@@ -1,4 +1,4 @@
-package com.etiya.spring.service;
+package com.etiya.spring.service.product;
 
 
 import com.etiya.spring.dto.product.*;

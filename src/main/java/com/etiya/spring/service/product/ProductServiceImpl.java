@@ -1,9 +1,11 @@
-package com.etiya.spring.service;
+package com.etiya.spring.service.product;
 
+import com.etiya.spring.core.exception.type.BusinessException;
 import com.etiya.spring.dto.product.*;
 import com.etiya.spring.entity.Product;
 import com.etiya.spring.mapper.ProductMapper;
-import com.etiya.spring.repository.ProductRepository;
+import com.etiya.spring.repository.product.ProductRepository;
+import com.etiya.spring.service.product.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,7 @@ import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     @Override
@@ -32,7 +34,7 @@ public class ProductServiceImpl implements ProductService{
         Product product = ProductMapper.INSTANCE.productFromCreateDto(createProductRequestDto);
 
         Random random = new Random();
-        product.setId(random.nextInt(1, 99999));
+        product.setId(random.nextInt(1, 99));
 
         Product addedProduct = productRepository.add(product);
 
@@ -46,6 +48,19 @@ public class ProductServiceImpl implements ProductService{
     public UpdateProductResponseDto update(int id, UpdateProductRequestDto updateProductRequestDto) {
 
         Product product = ProductMapper.INSTANCE.productFromUpdateDto(updateProductRequestDto);
+
+        boolean productWithSameData = productRepository.getAll()
+                .stream()
+                .anyMatch(_product ->
+                        _product.getName().equals(product.getName()) &&
+                                _product.getUnitPrice() == product.getUnitPrice() &&
+                                _product.getUnitsInStock() == product.getUnitsInStock()
+                );
+
+        if(productWithSameData)
+            throw new BusinessException("Güncellenen ürün eski ürünle aynı olamaz!.");
+
+
         Product updatedProduct = productRepository.update(id, product);
         return ProductMapper.INSTANCE.updateProductResponseDtoFromProduct(updatedProduct);
     }
